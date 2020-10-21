@@ -7,8 +7,8 @@ from keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 
-X = pickle.load(open("X.pickle", "rb"))
-y = pickle.load(open("y.pickle", "rb"))
+X = pickle.load(open("X_train.pickle", "rb"))
+y = pickle.load(open("y_train.pickle", "rb"))
 
 # normalizing data (a pixel goes from 0 to 255)
 X = X / 255.0

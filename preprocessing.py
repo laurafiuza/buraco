@@ -5,6 +5,7 @@ import cv2
 import random
 import pickle
 import xmltodict
+from sklearn.model_selection import train_test_split
 
 DATA_DIR = "archive"
 
@@ -38,13 +39,20 @@ for features, label in training_data:
 
 X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
 
-pickle_out = open('X.pickle', 'wb')
-pickle.dump(X, pickle_out)
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7)
+
+pickle_out = open('X_train.pickle', 'wb')
+pickle.dump(X_train, pickle_out)
 pickle_out.close()
 
-pickle_out = open('y.pickle', 'wb')
-pickle.dump(y, pickle_out)
+pickle_out = open('X_test.pickle', 'wb')
+pickle.dump(X_test, pickle_out)
 pickle_out.close()
 
-pickle_in = open("X.pickle", 'rb')
-X = pickle.load(pickle_in)
+pickle_out = open('y_train.pickle', 'wb')
+pickle.dump(y_train, pickle_out)
+pickle_out.close()
+
+pickle_out = open('y_test.pickle', 'wb')
+pickle.dump(y_test, pickle_out)
+pickle_out.close()
